@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load bool_to_status %}
+{% block content %}
+  <h1>TODO LIST
+    <a href="{% url 'list:task-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
+  {% if task_list %}
+    <ul>
+      {% for task in task_list %}
+        <li>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-10">
+                <strong>{{ task.content }}</strong>
+                {% if task.completed %}
+                  <span class="text-success"><strong>{% bool_to_status task.completed %}</strong></span>
+                {% else %}
+                  <span class="text-danger"><strong>{% bool_to_status task.completed %}</strong></span>
+                {% endif %}
+                <br>Created at: {{ task.created_at }}
+                <br> Deadline: {{ task.deadline }}
+                <p class="text-muted">Tags:
+                  {% for tag in task.tags.all %}
+                    {{ tag.name }}
+                  {% endfor %}
+                </p>
+                <a href="{% url 'list:task-update'  pk=task.id %}" class="btn btn-primary link-to-page">
+                  Update
+                </a>
+                <a href="{% url 'list:task-delete'  pk=task.id %}" class="btn btn-primary link-to-page">
+                  Delete
+                </a>
+              </div>
+              <div class="col-sm-2">
+                {% if task.completed %}
+                  <a href="{% url 'list:task-toggle' pk=task.id %}" class="btn btn-danger link-to-page">
+                    Undo
+                  </a>
+                {% else %}
+                  <a href="{% url 'list:task-toggle' pk=task.id %}" class="btn btn-success link-to-page">
+                    Complete
+                  </a>
+                {% endif %}
+              </div>
+        </li>
+
+      {% endfor %}
+    </ul>
+
+  {% endif %}
+{% endblock %}
