@@ -8,7 +8,7 @@ from list.views import (
     TagUpdateView,
     TagDeleteView,
     TaskDeleteView,
-    TaskUpdateView,
+    TaskUpdateView, toggle_undo_complete,
 )
 
 urlpatterns = [
@@ -44,7 +44,11 @@ urlpatterns = [
         TagDeleteView.as_view(),
         name="tag-delete",
     ),
-
+    path(
+        "<int:pk>/toggle_undo_complete/",
+        toggle_undo_complete,
+        name="task-toggle",
+    ),
 ]
 
 app_name = "list"
