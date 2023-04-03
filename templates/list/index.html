@@ -1,4 +1,25 @@
 {%  extends "base.html" %}
+{% load bool_to_status %}
 {% block content %}
-  Hello
+  <h1>TODO LIST
+  <a href="{% url 'list:task-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
+  {% if task_list %}
+    <ul>
+      {% for task in task_list %}
+        <li><strong>{{ task.content }}</strong> {% bool_to_status task.completed %}
+          <br>Created at: {{ task.created_at }}
+          <br> Deadline: {{ task.deadline }}
+          <br>Tags:
+          {%for tag in task.tags.all %}
+            {{ tag.name }}
+          {% endfor %}
+        </li>
+
+      {% endfor %}
+    </ul>
+
+  {% endif %}
 {% endblock %}
