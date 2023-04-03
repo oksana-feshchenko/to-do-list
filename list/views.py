@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
+from list.forms import TaskCreateForm
 from list.models import Task, Tag
 
 
@@ -12,6 +13,12 @@ def index(request):
     }
 
     return render(request, "list/index.html", context=context)
+
+
+class TaskCreateView(generic.CreateView):
+    model = Task
+    form_class = TaskCreateForm
+    success_url = reverse_lazy("list:index")
 
 
 class TagListView(generic.ListView):
