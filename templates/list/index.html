@@ -16,6 +16,14 @@
           {%for tag in task.tags.all %}
             {{ tag.name }}
           {% endfor %}
+          <br>
+         <a href="{% url 'list:task-update'  pk=task.id%}" class="btn btn-primary link-to-page">
+      Update
+    </a>
+        <a href="{% url 'list:task-delete'  pk=task.id%}" class="btn btn-primary link-to-page">
+      Delete
+    </a>
+
         </li>
 
       {% endfor %}
