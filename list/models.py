@@ -20,9 +20,3 @@ class Task(models.Model):
 
     def __str__(self):
         return f"{self.content} should be done to {self.deadline}"
-
-
-
-
-
-

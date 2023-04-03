@@ -17,4 +17,3 @@ class Task(admin.ModelAdmin):
 class Tag(admin.ModelAdmin):
     list_display = ["name"]
     search_fields = ["name"]
-

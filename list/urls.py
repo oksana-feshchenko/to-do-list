@@ -8,7 +8,8 @@ from list.views import (
     TagUpdateView,
     TagDeleteView,
     TaskDeleteView,
-    TaskUpdateView, toggle_undo_complete,
+    TaskUpdateView,
+    toggle_undo_complete,
 )
 
 urlpatterns = [

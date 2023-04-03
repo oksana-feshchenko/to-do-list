@@ -15,16 +15,16 @@
               <div class="col-sm-10">
                 <strong>{{ task.content }}</strong>
                 {% if task.completed %}
-                <span class="text-success"><strong>{% bool_to_status task.completed %}</strong></span>
-                 {% else %}
+                  <span class="text-success"><strong>{% bool_to_status task.completed %}</strong></span>
+                {% else %}
                   <span class="text-danger"><strong>{% bool_to_status task.completed %}</strong></span>
                 {% endif %}
                 <br>Created at: {{ task.created_at }}
                 <br> Deadline: {{ task.deadline }}
                 <p class="text-muted">Tags:
-                {% for tag in task.tags.all %}
-                  {{ tag.name }}
-                {% endfor %}
+                  {% for tag in task.tags.all %}
+                    {{ tag.name }}
+                  {% endfor %}
                 </p>
                 <a href="{% url 'list:task-update'  pk=task.id %}" class="btn btn-primary link-to-page">
                   Update

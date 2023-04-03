@@ -3,8 +3,8 @@
 {% block content %}
   <h1>{{ object|yesno:"Update,Add new" }} task</h1>
   <form action="" method="post" novalidate>
-  {% csrf_token %}
-  {{ form|crispy}}
+    {% csrf_token %}
+    {{ form|crispy }}
     <input type="submit" value="submit" class="btn btn-primary">
   </form>
 {% endblock %}
